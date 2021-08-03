@@ -7,7 +7,7 @@ variables:
   serviceBusLocation: 'Norway East'
   deploymentFile: 'azuredeploy_02.json'
   resourceGroupName: 'SPL_TST'
-  subscriptionId: 'f8340282-4c2d-41e5-bc96-0a433f327610'
+  subscriptionId: '26e2ddde-877d-449e-a869-60e0ac6fee92'
   resourceManagerConnection: 'decision-support-cicd-nonprod'
 
 trigger:
