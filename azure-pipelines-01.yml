@@ -8,7 +8,7 @@ variables:
   deploymentFile: 'azuredeploy_02.json'
   resourceGroupName: 'SPL_TST'
   subscriptionId: 'f8340282-4c2d-41e5-bc96-0a433f327610'
-  resourceManagerConnection: 'spl-decision-support-cicd-nonprod'
+  resourceManagerConnection: 'decision-support-cicd-nonprod'
 
 trigger:
 - master
