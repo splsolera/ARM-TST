@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29609.76
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "Audatex.ArmTemplates", "Audatex.ArmTemplates\Audatex.ArmTemplates.deployproj", "{3C91CCF2-6227-4B91-B65D-764DCFDDC4AF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3C91CCF2-6227-4B91-B65D-764DCFDDC4AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C91CCF2-6227-4B91-B65D-764DCFDDC4AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C91CCF2-6227-4B91-B65D-764DCFDDC4AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C91CCF2-6227-4B91-B65D-764DCFDDC4AF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {62B126D1-4A73-4D44-8FF9-4CEE2EA94F2A}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,1484 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "variables": {},
+  "parameters": {
+    "location": {
+      "type": "string",
+      "defaultValue": "[resourceGroup().location]",
+      "metadata": {
+        "description": "Location for the resources."
+      }
+    },
+    "serviceBus_namespace": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of the Topic"
+      }
+    },
+    "serviceBus_Topic_Name": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of the Topic"
+      }
+    },
+    "serviceBus_Claims_Service_Process_Blueprint_Supp_Subscription_Name": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of the claims service subscription to process blueprint supplementary data"
+      }
+    },
+    "serviceBus_Claims_Service_Process_Blueprint_Supp_Filter_Rule_Name": {
+      "type": "string",
+      "metadata": {
+        "description": "Rule of the subscription"
+      }
+    },
+    "serviceBus_Claims_Service_Process_Blueprint_Supp_Filter": {
+      "type": "string",
+      "metadata": {
+        "description": "Filter of the subscription"
+      }
+    },
+    "serviceBus_Gito_Monitoring_Subscription_Name": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of the the monitoring subscription used by GITO"
+      }
+    },
+    "serviceBus_Gito_Monitoring_Filter_Rule_Name": {
+      "type": "string",
+      "metadata": {
+        "description": "Rule of the subscription"
+      }
+    },
+    "serviceBus_Gito_Monitoring_Filter": {
+      "type": "string",
+      "metadata": {
+        "description": "Filter of the subscription"
+      }
+    },
+    "serviceBus_Event_Logger_Subscription_Name": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of the subscription used by the data warehouse"
+      }
+    },
+    "serviceBus_catch_all_Subscription_Name": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of the catch all subscription"
+      }
+    },
+    "serviceBus_Audabridge_ReappointRepairer_Subscription_Name": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of the the subscription used by the reappoint service"
+      }
+    },
+    "serviceBus_Audabridge_ReappointRepairer_Filter_Rule_Name": {
+      "type": "string",
+      "metadata": {
+        "description": "Rule of the subscription"
+      }
+    },
+    "serviceBus_Audabridge_ReappointRepairer_Filter": {
+      "type": "string",
+      "metadata": {
+        "description": "Filter of the subscription"
+      }
+    },
+    "serviceBus_Upload_Estimatic_Images_AU_Subscription_Name": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of the the subscription used by the images service to upload images to external estimatic systems"
+      }
+    },
+    "serviceBus_Upload_Estimatic_Images_AU_Filter_Rule_Name": {
+      "type": "string",
+      "metadata": {
+        "description": "Rule of the subscription"
+      }
+    },
+    "serviceBus_Upload_Estimatic_Images_AU_Filter": {
+      "type": "string",
+      "metadata": {
+        "description": "Filter of the subscription"
+      }
+    },
+    "serviceBus_Upload_Estimatic_Images_CH_Subscription_Name": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of the the subscription used by the images service to upload images to external estimatic systems"
+      }
+    },
+    "serviceBus_Upload_Estimatic_Images_CH_Filter_Rule_Name": {
+      "type": "string",
+      "metadata": {
+        "description": "Rule of the subscription"
+      }
+    },
+    "serviceBus_Upload_Estimatic_Images_CH_Filter": {
+      "type": "string",
+      "metadata": {
+        "description": "Filter of the subscription"
+      }
+    },
+    "serviceBus_Upload_Estimatic_Images_UK_Subscription_Name": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of the the subscription used by the images service to upload images to external estimatic systems"
+      }
+    },
+    "serviceBus_Upload_Estimatic_Images_UK_Filter_Rule_Name": {
+      "type": "string",
+      "metadata": {
+        "description": "Rule of the subscription"
+      }
+    },
+    "serviceBus_Upload_Estimatic_Images_UK_Filter": {
+      "type": "string",
+      "metadata": {
+        "description": "Filter of the subscription"
+      }
+    },
+    "serviceBus_Upload_Estimatic_Images_US_Subscription_Name": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of the the subscription used by the images service to upload images to external estimatic systems"
+      }
+    },
+    "serviceBus_Upload_Estimatic_Images_US_Filter_Rule_Name": {
+      "type": "string",
+      "metadata": {
+        "description": "Rule of the subscription"
+      }
+    },
+    "serviceBus_Upload_Estimatic_Images_US_Filter": {
+      "type": "string",
+      "metadata": {
+        "description": "Filter of the subscription"
+      }
+    },
+    "serviceBus_Upload_Estimatic_Images_ZA_Subscription_Name": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of the the subscription used by the images service to upload images to external estimatic systems"
+      }
+    },
+    "serviceBus_Upload_Estimatic_Images_ZA_Filter_Rule_Name": {
+      "type": "string",
+      "metadata": {
+        "description": "Rule of the subscription"
+      }
+    },
+    "serviceBus_Upload_Estimatic_Images_ZA_Filter": {
+      "type": "string",
+      "metadata": {
+        "description": "Filter of the subscription"
+      }
+    },
+    "serviceBus_Auto_Expire_Image_Requests_AU_Subscription_Name": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of the the subscription used by the image request service to auto expire image requests"
+      }
+    },
+    "serviceBus_Auto_Expire_Image_Requests_AU_Filter_Rule_Name": {
+      "type": "string",
+      "metadata": {
+        "description": "Rule of the subscription"
+      }
+    },
+    "serviceBus_Auto_Expire_Image_Requests_AU_Filter": {
+      "type": "string",
+      "metadata": {
+        "description": "Filter of the subscription"
+      }
+    },
+    "serviceBus_Auto_Expire_Image_Requests_CH_Subscription_Name": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of the the subscription used by the image request service to auto expire image requests"
+      }
+    },
+    "serviceBus_Auto_Expire_Image_Requests_CH_Filter_Rule_Name": {
+      "type": "string",
+      "metadata": {
+        "description": "Rule of the subscription"
+      }
+    },
+    "serviceBus_Auto_Expire_Image_Requests_CH_Filter": {
+      "type": "string",
+      "metadata": {
+        "description": "Filter of the subscription"
+      }
+    },
+    "serviceBus_Auto_Expire_Image_Requests_UK_Subscription_Name": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of the the subscription used by the image request service to auto expire image requests"
+      }
+    },
+    "serviceBus_Auto_Expire_Image_Requests_UK_Filter_Rule_Name": {
+      "type": "string",
+      "metadata": {
+        "description": "Rule of the subscription"
+      }
+    },
+    "serviceBus_Auto_Expire_Image_Requests_UK_Filter": {
+      "type": "string",
+      "metadata": {
+        "description": "Filter of the subscription"
+      }
+    },
+    "serviceBus_Auto_Expire_Image_Requests_US_Subscription_Name": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of the the subscription used by the image request service to auto expire image requests"
+      }
+    },
+    "serviceBus_Auto_Expire_Image_Requests_US_Filter_Rule_Name": {
+      "type": "string",
+      "metadata": {
+        "description": "Rule of the subscription"
+      }
+    },
+    "serviceBus_Auto_Expire_Image_Requests_US_Filter": {
+      "type": "string",
+      "metadata": {
+        "description": "Filter of the subscription"
+      }
+    },
+    "serviceBus_Auto_Expire_Image_Requests_ZA_Subscription_Name": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of the the subscription used by the image request service to auto expire image requests"
+      }
+    },
+    "serviceBus_Auto_Expire_Image_Requests_ZA_Filter_Rule_Name": {
+      "type": "string",
+      "metadata": {
+        "description": "Rule of the subscription"
+      }
+    },
+    "serviceBus_Auto_Expire_Image_Requests_ZA_Filter": {
+      "type": "string",
+      "metadata": {
+        "description": "Filter of the subscription"
+      }
+    },
+    "serviceBus_Process_Webhooks_Notifications_Service_AU_Subscription_Name": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of the the subscription used by the notifications service to process webhooks"
+      }
+    },
+    "serviceBus_Process_Webhooks_Notifications_Service_AU_Filter_Rule_Name": {
+      "type": "string",
+      "metadata": {
+        "description": "Rule of the subscription"
+      }
+    },
+    "serviceBus_Process_Webhooks_Notifications_Service_AU_Filter": {
+      "type": "string",
+      "metadata": {
+        "description": "Filter of the subscription"
+      }
+    },
+    "serviceBus_Process_Webhooks_Notifications_Service_CH_Subscription_Name": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of the the subscription used by the notifications service to process webhooks"
+      }
+    },
+    "serviceBus_Process_Webhooks_Notifications_Service_CH_Filter_Rule_Name": {
+      "type": "string",
+      "metadata": {
+        "description": "Rule of the subscription"
+      }
+    },
+    "serviceBus_Process_Webhooks_Notifications_Service_CH_Filter": {
+      "type": "string",
+      "metadata": {
+        "description": "Filter of the subscription"
+      }
+    },
+    "serviceBus_Process_Webhooks_Notifications_Service_UK_Subscription_Name": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of the the subscription used by the notifications service to process webhooks"
+      }
+    },
+    "serviceBus_Process_Webhooks_Notifications_Service_UK_Filter_Rule_Name": {
+      "type": "string",
+      "metadata": {
+        "description": "Rule of the subscription"
+      }
+    },
+    "serviceBus_Process_Webhooks_Notifications_Service_UK_Filter": {
+      "type": "string",
+      "metadata": {
+        "description": "Filter of the subscription"
+      }
+    },
+    "serviceBus_Process_Webhooks_Notifications_Service_US_Subscription_Name": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of the the subscription used by the notifications service to process webhooks"
+      }
+    },
+    "serviceBus_Process_Webhooks_Notifications_Service_US_Filter_Rule_Name": {
+      "type": "string",
+      "metadata": {
+        "description": "Rule of the subscription"
+      }
+    },
+    "serviceBus_Process_Webhooks_Notifications_Service_US_Filter": {
+      "type": "string",
+      "metadata": {
+        "description": "Filter of the subscription"
+      }
+    },
+    "serviceBus_Process_Webhooks_Notifications_Service_ZA_Subscription_Name": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of the the subscription used by the notifications service to process webhooks"
+      }
+    },
+    "serviceBus_Process_Webhooks_Notifications_Service_ZA_Filter_Rule_Name": {
+      "type": "string",
+      "metadata": {
+        "description": "Rule of the subscription"
+      }
+    },
+    "serviceBus_Process_Webhooks_Notifications_Service_ZA_Filter": {
+      "type": "string",
+      "metadata": {
+        "description": "Filter of the subscription"
+      }
+    },
+    "serviceBus_Process_VI_Core_UK_Images_Service_Subscription_Name": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of the the subscription used by the images service to process vi core"
+      }
+    },
+    "serviceBus_Process_VI_Core_UK_Images_Service_Filter_Rule_Name": {
+      "type": "string",
+      "metadata": {
+        "description": "Rule of the subscription"
+      }
+    },
+    "serviceBus_Process_VI_Core_UK_Images_Service_Filter": {
+      "type": "string",
+      "metadata": {
+        "description": "Filter of the subscription"
+      }
+    },
+    "serviceBus_Process_VI_Core_US_Images_Service_Subscription_Name": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of the the subscription used by the images service to process vi core"
+      }
+    },
+    "serviceBus_Process_VI_Core_US_Images_Service_Filter_Rule_Name": {
+      "type": "string",
+      "metadata": {
+        "description": "Rule of the subscription"
+      }
+    },
+    "serviceBus_Process_VI_Core_US_Images_Service_Filter": {
+      "type": "string",
+      "metadata": {
+        "description": "Filter of the subscription"
+      }
+    },
+    "serviceBus_Process_VI_Core_ZA_Images_Service_Subscription_Name": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of the the subscription used by the images service to process vi core"
+      }
+    },
+    "serviceBus_Process_VI_Core_ZA_Images_Service_Filter_Rule_Name": {
+      "type": "string",
+      "metadata": {
+        "description": "Rule of the subscription"
+      }
+    },
+    "serviceBus_Process_VI_Core_ZA_Images_Service_Filter": {
+      "type": "string",
+      "metadata": {
+        "description": "Filter of the subscription"
+      }
+    },
+    "serviceBus_Process_VI_Core_AU_Images_Service_Subscription_Name": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of the the subscription used by the images service to process vi core"
+      }
+    },
+    "serviceBus_Process_VI_Core_AU_Images_Service_Filter_Rule_Name": {
+      "type": "string",
+      "metadata": {
+        "description": "Rule of the subscription"
+      }
+    },
+    "serviceBus_Process_VI_Core_AU_Images_Service_Filter": {
+      "type": "string",
+      "metadata": {
+        "description": "Filter of the subscription"
+      }
+    },
+    "serviceBus_Process_VI_Core_CH_Images_Service_Subscription_Name": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of the the subscription used by the images service to process vi core"
+      }
+    },
+    "serviceBus_Process_VI_Core_CH_Images_Service_Filter_Rule_Name": {
+      "type": "string",
+      "metadata": {
+        "description": "Rule of the subscription"
+      }
+    },
+    "serviceBus_Process_VI_Core_CH_Images_Service_Filter": {
+      "type": "string",
+      "metadata": {
+        "description": "Filter of the subscription"
+      }
+    },
+    "serviceBus_Images_Service_Process_Collection_Upload_Estimatic_Images_AU_Subscription_Name": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of the the subscription used by the images service to process an image collection and upload to an estimatic system"
+      }
+    },
+    "serviceBus_Images_Service_Process_Collection_Upload_Estimatic_Images_AU_Rule_Name": {
+      "type": "string",
+      "metadata": {
+        "description": "Rule of the subscription"
+      }
+    },
+    "serviceBus_Images_Service_Process_Collection_Upload_Estimatic_Images_AU_Filter": {
+      "type": "string",
+      "metadata": {
+        "description": "Filter of the subscription"
+      }
+    },
+    "serviceBus_Images_Service_Process_Collection_Upload_Estimatic_Images_CH_Subscription_Name": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of the the subscription used by the images service to process an image collection and upload to an estimatic system"
+      }
+    },
+    "serviceBus_Images_Service_Process_Collection_Upload_Estimatic_Images_CH_Rule_Name": {
+      "type": "string",
+      "metadata": {
+        "description": "Rule of the subscription"
+      }
+    },
+    "serviceBus_Images_Service_Process_Collection_Upload_Estimatic_Images_CH_Filter": {
+      "type": "string",
+      "metadata": {
+        "description": "Filter of the subscription"
+      }
+    },
+    "serviceBus_Images_Service_Process_Collection_Upload_Estimatic_Images_UK_Subscription_Name": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of the the subscription used by the images service to process an image collection and upload to an estimatic system"
+      }
+    },
+    "serviceBus_Images_Service_Process_Collection_Upload_Estimatic_Images_UK_Rule_Name": {
+      "type": "string",
+      "metadata": {
+        "description": "Rule of the subscription"
+      }
+    },
+    "serviceBus_Images_Service_Process_Collection_Upload_Estimatic_Images_UK_Filter": {
+      "type": "string",
+      "metadata": {
+        "description": "Filter of the subscription"
+      }
+    },
+    "serviceBus_Images_Service_Process_Collection_Upload_Estimatic_Images_US_Subscription_Name": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of the the subscription used by the images service to process an image collection and upload to an estimatic system"
+      }
+    },
+    "serviceBus_Images_Service_Process_Collection_Upload_Estimatic_Images_US_Rule_Name": {
+      "type": "string",
+      "metadata": {
+        "description": "Rule of the subscription"
+      }
+    },
+    "serviceBus_Images_Service_Process_Collection_Upload_Estimatic_Images_US_Filter": {
+      "type": "string",
+      "metadata": {
+        "description": "Filter of the subscription"
+      }
+    },
+    "serviceBus_Images_Service_Process_Collection_Upload_Estimatic_Images_ZA_Subscription_Name": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of the the subscription used by the images service to process an image collection and upload to an estimatic system"
+      }
+    },
+    "serviceBus_Images_Service_Process_Collection_Upload_Estimatic_Images_ZA_Rule_Name": {
+      "type": "string",
+      "metadata": {
+        "description": "Rule of the subscription"
+      }
+    },
+    "serviceBus_Images_Service_Process_Collection_Upload_Estimatic_Images_ZA_Filter": {
+      "type": "string",
+      "metadata": {
+        "description": "Filter of the subscription"
+      }
+    },
+    "serviceBus_Adxe_Service_Process_VI_Core_Completed_US_Subscription_Name": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of the the subscription used by the adxe service to do a vi full calculation on an image collection"
+      }
+    },
+    "serviceBus_Adxe_Service_Process_VI_Core_Completed_US_Rule_Name": {
+      "type": "string",
+      "metadata": {
+        "description": "Rule of the subscription"
+      }
+    },
+    "serviceBus_Adxe_Service_Process_VI_Core_Completed_US_Filter": {
+      "type": "string",
+      "metadata": {
+        "description": "Filter of the subscription"
+      }
+    },
+    "serviceBus_Qapter_Estimatic_Images_CH_Subscription_Name": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of the the subscription used by the images service to send messages to Qapter estimatic system"
+      }
+    },
+    "serviceBus_Qapter_Estimatic_Images_CH_Filter_Rule_Name": {
+      "type": "string",
+      "metadata": {
+        "description": "Rule of the subscription"
+      }
+    },
+    "serviceBus_Qapter_Estimatic_Images_CH_Filter": {
+      "type": "string",
+      "metadata": {
+        "description": "Filter of the subscription"
+      }
+    },
+    "serviceBus_Adxe_Estimatic_Images_US_Subscription_Name": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of the subscrition used by the images service to upload images to ADXE estimatic systems"
+      }
+    },
+    "serviceBus_Adxe_Estimatic_Images_US_Filter_Rule_Name": {
+      "type": "string",
+      "metadata": {
+        "description": "Rule of the subscription"
+      }
+    },
+    "serviceBus_Adxe_Estimatic_Images_US_Filter": {
+      "type": "string",
+      "metadata": {
+        "description": "Filter of the subscription"
+      }
+    }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.ServiceBus/namespaces",
+      "apiVersion": "2017-04-01",
+      "name": "[parameters('serviceBus_namespace')]",
+      "location": "[parameters('location')]",
+      "sku": {
+        "name": "Standard",
+        "tier": "Standard"
+      },
+      "properties": {
+        "zoneRedundant": false
+      }
+    },
+    {
+      "type": "Microsoft.ServiceBus/namespaces/AuthorizationRules",
+      "apiVersion": "2017-04-01",
+      "name": "[concat(parameters('serviceBus_namespace'), '/RootManageSharedAccessKey')]",
+      "location": "[parameters('location')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.ServiceBus/namespaces', parameters('serviceBus_namespace'))]"
+      ],
+      "properties": {
+        "rights": [
+          "Listen",
+          "Manage",
+          "Send"
+        ]
+      }
+    },
+    {
+      "type": "Microsoft.ServiceBus/namespaces/AuthorizationRules",
+      "apiVersion": "2017-04-01",
+      "name": "[concat(parameters('serviceBus_namespace'), '/ListenSharedAccessKey')]",
+      "location": "[parameters('location')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.ServiceBus/namespaces', parameters('serviceBus_namespace'))]"
+      ],
+      "properties": {
+        "rights": [
+          "Listen"
+        ]
+      }
+    },
+    {
+      "type": "Microsoft.ServiceBus/namespaces/AuthorizationRules",
+      "apiVersion": "2017-04-01",
+      "name": "[concat(parameters('serviceBus_namespace'), '/SendSharedAccessKey')]",
+      "location": "[parameters('location')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.ServiceBus/namespaces', parameters('serviceBus_namespace'))]"
+      ],
+      "properties": {
+        "rights": [
+          "Send"
+        ]
+      }
+    },
+    {
+      "type": "Microsoft.ServiceBus/namespaces/AuthorizationRules",
+      "apiVersion": "2017-04-01",
+      "name": "[concat(parameters('serviceBus_namespace'), '/ListenSendSharedAccessKey')]",
+      "location": "[parameters('location')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.ServiceBus/namespaces', parameters('serviceBus_namespace'))]"
+      ],
+      "properties": {
+        "rights": [
+          "Listen",
+          "Send"
+        ]
+      }
+    },
+    {
+      "type": "Microsoft.ServiceBus/namespaces/topics",
+      "apiVersion": "2017-04-01",
+      "name": "[concat(parameters('serviceBus_namespace'), '/', parameters('serviceBus_Topic_Name'))]",
+      "location": "[parameters('location')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.ServiceBus/namespaces', parameters('serviceBus_namespace'))]"
+      ],
+      "properties": {
+        "defaultMessageTimeToLive": "P14D",
+        "maxSizeInMegabytes": 1024,
+        "requiresDuplicateDetection": false,
+        "duplicateDetectionHistoryTimeWindow": "PT10M",
+        "enableBatchedOperations": true,
+        "status": "Active",
+        "supportOrdering": true,
+        "autoDeleteOnIdle": "P10675199DT2H48M5.4775807S",
+        "enablePartitioning": false,
+        "enableExpress": false
+      },
+      "resources": [
+        {
+          "apiVersion": "2017-04-01",
+          "name": "[parameters('serviceBus_Claims_Service_Process_Blueprint_Supp_Subscription_Name')]",
+          "type": "subscriptions",
+          "dependsOn": [
+            "[parameters('serviceBus_Topic_Name')]"
+          ],
+          "resources": [
+            {
+              "apiVersion": "2017-04-01",
+              "name": "[parameters('serviceBus_Claims_Service_Process_Blueprint_Supp_Filter_Rule_Name')]",
+              "type": "Rules",
+              "dependsOn": [
+                "[parameters('serviceBus_Claims_Service_Process_Blueprint_Supp_Subscription_Name')]"
+              ],
+              "properties": {
+                "filterType": "SqlFilter",
+                "sqlFilter": {
+                  "sqlExpression": "[parameters('serviceBus_Claims_Service_Process_Blueprint_Supp_Filter')]",
+                  "requiresPreprocessing": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "apiVersion": "2017-04-01",
+          "name": "[parameters('serviceBus_Gito_Monitoring_Subscription_Name')]",
+          "type": "subscriptions",
+          "dependsOn": [
+            "[parameters('serviceBus_Topic_Name')]"
+          ],
+          "resources": [
+            {
+              "apiVersion": "2017-04-01",
+              "name": "[parameters('serviceBus_Gito_Monitoring_Filter_Rule_Name')]",
+              "type": "Rules",
+              "dependsOn": [
+                "[parameters('serviceBus_Gito_Monitoring_Subscription_Name')]"
+              ],
+              "properties": {
+                "filterType": "SqlFilter",
+                "sqlFilter": {
+                  "sqlExpression": "[parameters('serviceBus_Gito_Monitoring_Filter')]",
+                  "requiresPreprocessing": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "apiVersion": "2017-04-01",
+          "name": "[parameters('serviceBus_Event_Logger_Subscription_Name')]",
+          "type": "subscriptions",
+          "dependsOn": [
+            "[parameters('serviceBus_Topic_Name')]"
+          ]
+        },
+        {
+          "apiVersion": "2017-04-01",
+          "name": "[parameters('serviceBus_catch_all_Subscription_Name')]",
+          "type": "subscriptions",
+          "dependsOn": [
+            "[parameters('serviceBus_Topic_Name')]"
+          ]
+        },
+        {
+          "apiVersion": "2017-04-01",
+          "name": "[parameters('serviceBus_Audabridge_ReappointRepairer_Subscription_Name')]",
+          "type": "subscriptions",
+          "dependsOn": [
+            "[parameters('serviceBus_Topic_Name')]"
+          ],
+          "resources": [
+            {
+              "apiVersion": "2017-04-01",
+              "name": "[parameters('serviceBus_Audabridge_ReappointRepairer_Filter_Rule_Name')]",
+              "type": "Rules",
+              "dependsOn": [
+                "[parameters('serviceBus_Audabridge_ReappointRepairer_Subscription_Name')]"
+              ],
+              "properties": {
+                "filterType": "SqlFilter",
+                "sqlFilter": {
+                  "sqlExpression": "[parameters('serviceBus_Audabridge_ReappointRepairer_Filter')]",
+                  "requiresPreprocessing": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "apiVersion": "2017-04-01",
+          "name": "[parameters('serviceBus_Upload_Estimatic_Images_AU_Subscription_Name')]",
+          "type": "subscriptions",
+          "dependsOn": [
+            "[parameters('serviceBus_Topic_Name')]"
+          ],
+          "resources": [
+            {
+              "apiVersion": "2017-04-01",
+              "name": "[parameters('serviceBus_Upload_Estimatic_Images_AU_Filter_Rule_Name')]",
+              "type": "Rules",
+              "dependsOn": [
+                "[parameters('serviceBus_Upload_Estimatic_Images_AU_Subscription_Name')]"
+              ],
+              "properties": {
+                "filterType": "SqlFilter",
+                "sqlFilter": {
+                  "sqlExpression": "[parameters('serviceBus_Upload_Estimatic_Images_AU_Filter')]",
+                  "requiresPreprocessing": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "apiVersion": "2017-04-01",
+          "name": "[parameters('serviceBus_Upload_Estimatic_Images_CH_Subscription_Name')]",
+          "type": "subscriptions",
+          "dependsOn": [
+            "[parameters('serviceBus_Topic_Name')]"
+          ],
+          "resources": [
+            {
+              "apiVersion": "2017-04-01",
+              "name": "[parameters('serviceBus_Upload_Estimatic_Images_CH_Filter_Rule_Name')]",
+              "type": "Rules",
+              "dependsOn": [
+                "[parameters('serviceBus_Upload_Estimatic_Images_CH_Subscription_Name')]"
+              ],
+              "properties": {
+                "filterType": "SqlFilter",
+                "sqlFilter": {
+                  "sqlExpression": "[parameters('serviceBus_Upload_Estimatic_Images_CH_Filter')]",
+                  "requiresPreprocessing": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "apiVersion": "2017-04-01",
+          "name": "[parameters('serviceBus_Upload_Estimatic_Images_UK_Subscription_Name')]",
+          "type": "subscriptions",
+          "dependsOn": [
+            "[parameters('serviceBus_Topic_Name')]"
+          ],
+          "resources": [
+            {
+              "apiVersion": "2017-04-01",
+              "name": "[parameters('serviceBus_Upload_Estimatic_Images_UK_Filter_Rule_Name')]",
+              "type": "Rules",
+              "dependsOn": [
+                "[parameters('serviceBus_Upload_Estimatic_Images_UK_Subscription_Name')]"
+              ],
+              "properties": {
+                "filterType": "SqlFilter",
+                "sqlFilter": {
+                  "sqlExpression": "[parameters('serviceBus_Upload_Estimatic_Images_UK_Filter')]",
+                  "requiresPreprocessing": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "apiVersion": "2017-04-01",
+          "name": "[parameters('serviceBus_Upload_Estimatic_Images_US_Subscription_Name')]",
+          "type": "subscriptions",
+          "dependsOn": [
+            "[parameters('serviceBus_Topic_Name')]"
+          ],
+          "resources": [
+            {
+              "apiVersion": "2017-04-01",
+              "name": "[parameters('serviceBus_Upload_Estimatic_Images_US_Filter_Rule_Name')]",
+              "type": "Rules",
+              "dependsOn": [
+                "[parameters('serviceBus_Upload_Estimatic_Images_US_Subscription_Name')]"
+              ],
+              "properties": {
+                "filterType": "SqlFilter",
+                "sqlFilter": {
+                  "sqlExpression": "[parameters('serviceBus_Upload_Estimatic_Images_US_Filter')]",
+                  "requiresPreprocessing": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "apiVersion": "2017-04-01",
+          "name": "[parameters('serviceBus_Upload_Estimatic_Images_ZA_Subscription_Name')]",
+          "type": "subscriptions",
+          "dependsOn": [
+            "[parameters('serviceBus_Topic_Name')]"
+          ],
+          "resources": [
+            {
+              "apiVersion": "2017-04-01",
+              "name": "[parameters('serviceBus_Upload_Estimatic_Images_ZA_Filter_Rule_Name')]",
+              "type": "Rules",
+              "dependsOn": [
+                "[parameters('serviceBus_Upload_Estimatic_Images_ZA_Subscription_Name')]"
+              ],
+              "properties": {
+                "filterType": "SqlFilter",
+                "sqlFilter": {
+                  "sqlExpression": "[parameters('serviceBus_Upload_Estimatic_Images_ZA_Filter')]",
+                  "requiresPreprocessing": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "apiVersion": "2017-04-01",
+          "name": "[parameters('serviceBus_Auto_Expire_Image_Requests_AU_Subscription_Name')]",
+          "type": "subscriptions",
+          "dependsOn": [
+            "[parameters('serviceBus_Topic_Name')]"
+          ],
+          "resources": [
+            {
+              "apiVersion": "2017-04-01",
+              "name": "[parameters('serviceBus_Auto_Expire_Image_Requests_AU_Filter_Rule_Name')]",
+              "type": "Rules",
+              "dependsOn": [
+                "[parameters('serviceBus_Auto_Expire_Image_Requests_AU_Subscription_Name')]"
+              ],
+              "properties": {
+                "filterType": "SqlFilter",
+                "sqlFilter": {
+                  "sqlExpression": "[parameters('serviceBus_Auto_Expire_Image_Requests_AU_Filter')]",
+                  "requiresPreprocessing": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "apiVersion": "2017-04-01",
+          "name": "[parameters('serviceBus_Auto_Expire_Image_Requests_CH_Subscription_Name')]",
+          "type": "subscriptions",
+          "dependsOn": [
+            "[parameters('serviceBus_Topic_Name')]"
+          ],
+          "resources": [
+            {
+              "apiVersion": "2017-04-01",
+              "name": "[parameters('serviceBus_Auto_Expire_Image_Requests_CH_Filter_Rule_Name')]",
+              "type": "Rules",
+              "dependsOn": [
+                "[parameters('serviceBus_Auto_Expire_Image_Requests_CH_Subscription_Name')]"
+              ],
+              "properties": {
+                "filterType": "SqlFilter",
+                "sqlFilter": {
+                  "sqlExpression": "[parameters('serviceBus_Auto_Expire_Image_Requests_CH_Filter')]",
+                  "requiresPreprocessing": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "apiVersion": "2017-04-01",
+          "name": "[parameters('serviceBus_Auto_Expire_Image_Requests_UK_Subscription_Name')]",
+          "type": "subscriptions",
+          "dependsOn": [
+            "[parameters('serviceBus_Topic_Name')]"
+          ],
+          "resources": [
+            {
+              "apiVersion": "2017-04-01",
+              "name": "[parameters('serviceBus_Auto_Expire_Image_Requests_UK_Filter_Rule_Name')]",
+              "type": "Rules",
+              "dependsOn": [
+                "[parameters('serviceBus_Auto_Expire_Image_Requests_UK_Subscription_Name')]"
+              ],
+              "properties": {
+                "filterType": "SqlFilter",
+                "sqlFilter": {
+                  "sqlExpression": "[parameters('serviceBus_Auto_Expire_Image_Requests_UK_Filter')]",
+                  "requiresPreprocessing": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "apiVersion": "2017-04-01",
+          "name": "[parameters('serviceBus_Auto_Expire_Image_Requests_US_Subscription_Name')]",
+          "type": "subscriptions",
+          "dependsOn": [
+            "[parameters('serviceBus_Topic_Name')]"
+          ],
+          "resources": [
+            {
+              "apiVersion": "2017-04-01",
+              "name": "[parameters('serviceBus_Auto_Expire_Image_Requests_US_Filter_Rule_Name')]",
+              "type": "Rules",
+              "dependsOn": [
+                "[parameters('serviceBus_Auto_Expire_Image_Requests_US_Subscription_Name')]"
+              ],
+              "properties": {
+                "filterType": "SqlFilter",
+                "sqlFilter": {
+                  "sqlExpression": "[parameters('serviceBus_Auto_Expire_Image_Requests_US_Filter')]",
+                  "requiresPreprocessing": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "apiVersion": "2017-04-01",
+          "name": "[parameters('serviceBus_Auto_Expire_Image_Requests_ZA_Subscription_Name')]",
+          "type": "subscriptions",
+          "dependsOn": [
+            "[parameters('serviceBus_Topic_Name')]"
+          ],
+          "resources": [
+            {
+              "apiVersion": "2017-04-01",
+              "name": "[parameters('serviceBus_Auto_Expire_Image_Requests_ZA_Filter_Rule_Name')]",
+              "type": "Rules",
+              "dependsOn": [
+                "[parameters('serviceBus_Auto_Expire_Image_Requests_ZA_Subscription_Name')]"
+              ],
+              "properties": {
+                "filterType": "SqlFilter",
+                "sqlFilter": {
+                  "sqlExpression": "[parameters('serviceBus_Auto_Expire_Image_Requests_ZA_Filter')]",
+                  "requiresPreprocessing": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "apiVersion": "2017-04-01",
+          "name": "[parameters('serviceBus_Process_Webhooks_Notifications_Service_AU_Subscription_Name')]",
+          "type": "subscriptions",
+          "dependsOn": [
+            "[parameters('serviceBus_Topic_Name')]"
+          ],
+          "resources": [
+            {
+              "apiVersion": "2017-04-01",
+              "name": "[parameters('serviceBus_Process_Webhooks_Notifications_Service_AU_Filter_Rule_Name')]",
+              "type": "Rules",
+              "dependsOn": [
+                "[parameters('serviceBus_Process_Webhooks_Notifications_Service_AU_Subscription_Name')]"
+              ],
+              "properties": {
+                "filterType": "SqlFilter",
+                "sqlFilter": {
+                  "sqlExpression": "[parameters('serviceBus_Process_Webhooks_Notifications_Service_AU_Filter')]",
+                  "requiresPreprocessing": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "apiVersion": "2017-04-01",
+          "name": "[parameters('serviceBus_Process_Webhooks_Notifications_Service_CH_Subscription_Name')]",
+          "type": "subscriptions",
+          "dependsOn": [
+            "[parameters('serviceBus_Topic_Name')]"
+          ],
+          "resources": [
+            {
+              "apiVersion": "2017-04-01",
+              "name": "[parameters('serviceBus_Process_Webhooks_Notifications_Service_CH_Filter_Rule_Name')]",
+              "type": "Rules",
+              "dependsOn": [
+                "[parameters('serviceBus_Process_Webhooks_Notifications_Service_CH_Subscription_Name')]"
+              ],
+              "properties": {
+                "filterType": "SqlFilter",
+                "sqlFilter": {
+                  "sqlExpression": "[parameters('serviceBus_Process_Webhooks_Notifications_Service_CH_Filter')]",
+                  "requiresPreprocessing": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "apiVersion": "2017-04-01",
+          "name": "[parameters('serviceBus_Process_Webhooks_Notifications_Service_UK_Subscription_Name')]",
+          "type": "subscriptions",
+          "dependsOn": [
+            "[parameters('serviceBus_Topic_Name')]"
+          ],
+          "resources": [
+            {
+              "apiVersion": "2017-04-01",
+              "name": "[parameters('serviceBus_Process_Webhooks_Notifications_Service_UK_Filter_Rule_Name')]",
+              "type": "Rules",
+              "dependsOn": [
+                "[parameters('serviceBus_Process_Webhooks_Notifications_Service_UK_Subscription_Name')]"
+              ],
+              "properties": {
+                "filterType": "SqlFilter",
+                "sqlFilter": {
+                  "sqlExpression": "[parameters('serviceBus_Process_Webhooks_Notifications_Service_UK_Filter')]",
+                  "requiresPreprocessing": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "apiVersion": "2017-04-01",
+          "name": "[parameters('serviceBus_Process_Webhooks_Notifications_Service_US_Subscription_Name')]",
+          "type": "subscriptions",
+          "dependsOn": [
+            "[parameters('serviceBus_Topic_Name')]"
+          ],
+          "resources": [
+            {
+              "apiVersion": "2017-04-01",
+              "name": "[parameters('serviceBus_Process_Webhooks_Notifications_Service_US_Filter_Rule_Name')]",
+              "type": "Rules",
+              "dependsOn": [
+                "[parameters('serviceBus_Process_Webhooks_Notifications_Service_US_Subscription_Name')]"
+              ],
+              "properties": {
+                "filterType": "SqlFilter",
+                "sqlFilter": {
+                  "sqlExpression": "[parameters('serviceBus_Process_Webhooks_Notifications_Service_US_Filter')]",
+                  "requiresPreprocessing": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "apiVersion": "2017-04-01",
+          "name": "[parameters('serviceBus_Process_Webhooks_Notifications_Service_ZA_Subscription_Name')]",
+          "type": "subscriptions",
+          "dependsOn": [
+            "[parameters('serviceBus_Topic_Name')]"
+          ],
+          "resources": [
+            {
+              "apiVersion": "2017-04-01",
+              "name": "[parameters('serviceBus_Process_Webhooks_Notifications_Service_ZA_Filter_Rule_Name')]",
+              "type": "Rules",
+              "dependsOn": [
+                "[parameters('serviceBus_Process_Webhooks_Notifications_Service_ZA_Subscription_Name')]"
+              ],
+              "properties": {
+                "filterType": "SqlFilter",
+                "sqlFilter": {
+                  "sqlExpression": "[parameters('serviceBus_Process_Webhooks_Notifications_Service_ZA_Filter')]",
+                  "requiresPreprocessing": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "apiVersion": "2017-04-01",
+          "name": "[parameters('serviceBus_Process_VI_Core_UK_Images_Service_Subscription_Name')]",
+          "type": "subscriptions",
+          "dependsOn": [
+            "[parameters('serviceBus_Topic_Name')]"
+          ],
+          "resources": [
+            {
+              "apiVersion": "2017-04-01",
+              "name": "[parameters('serviceBus_Process_VI_Core_UK_Images_Service_Filter_Rule_Name')]",
+              "type": "Rules",
+              "dependsOn": [
+                "[parameters('serviceBus_Process_VI_Core_UK_Images_Service_Subscription_Name')]"
+              ],
+              "properties": {
+                "filterType": "SqlFilter",
+                "sqlFilter": {
+                  "sqlExpression": "[parameters('serviceBus_Process_VI_Core_UK_Images_Service_Filter')]",
+                  "requiresPreprocessing": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "apiVersion": "2017-04-01",
+          "name": "[parameters('serviceBus_Process_VI_Core_US_Images_Service_Subscription_Name')]",
+          "type": "subscriptions",
+          "dependsOn": [
+            "[parameters('serviceBus_Topic_Name')]"
+          ],
+          "resources": [
+            {
+              "apiVersion": "2017-04-01",
+              "name": "[parameters('serviceBus_Process_VI_Core_US_Images_Service_Filter_Rule_Name')]",
+              "type": "Rules",
+              "dependsOn": [
+                "[parameters('serviceBus_Process_VI_Core_US_Images_Service_Subscription_Name')]"
+              ],
+              "properties": {
+                "filterType": "SqlFilter",
+                "sqlFilter": {
+                  "sqlExpression": "[parameters('serviceBus_Process_VI_Core_US_Images_Service_Filter')]",
+                  "requiresPreprocessing": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "apiVersion": "2017-04-01",
+          "name": "[parameters('serviceBus_Process_VI_Core_AU_Images_Service_Subscription_Name')]",
+          "type": "subscriptions",
+          "dependsOn": [
+            "[parameters('serviceBus_Topic_Name')]"
+          ],
+          "resources": [
+            {
+              "apiVersion": "2017-04-01",
+              "name": "[parameters('serviceBus_Process_VI_Core_AU_Images_Service_Filter_Rule_Name')]",
+              "type": "Rules",
+              "dependsOn": [
+                "[parameters('serviceBus_Process_VI_Core_AU_Images_Service_Subscription_Name')]"
+              ],
+              "properties": {
+                "filterType": "SqlFilter",
+                "sqlFilter": {
+                  "sqlExpression": "[parameters('serviceBus_Process_VI_Core_AU_Images_Service_Filter')]",
+                  "requiresPreprocessing": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "apiVersion": "2017-04-01",
+          "name": "[parameters('serviceBus_Process_VI_Core_ZA_Images_Service_Subscription_Name')]",
+          "type": "subscriptions",
+          "dependsOn": [
+            "[parameters('serviceBus_Topic_Name')]"
+          ],
+          "resources": [
+            {
+              "apiVersion": "2017-04-01",
+              "name": "[parameters('serviceBus_Process_VI_Core_ZA_Images_Service_Filter_Rule_Name')]",
+              "type": "Rules",
+              "dependsOn": [
+                "[parameters('serviceBus_Process_VI_Core_ZA_Images_Service_Subscription_Name')]"
+              ],
+              "properties": {
+                "filterType": "SqlFilter",
+                "sqlFilter": {
+                  "sqlExpression": "[parameters('serviceBus_Process_VI_Core_ZA_Images_Service_Filter')]",
+                  "requiresPreprocessing": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "apiVersion": "2017-04-01",
+          "name": "[parameters('serviceBus_Process_VI_Core_CH_Images_Service_Subscription_Name')]",
+          "type": "subscriptions",
+          "dependsOn": [
+            "[parameters('serviceBus_Topic_Name')]"
+          ],
+          "resources": [
+            {
+              "apiVersion": "2017-04-01",
+              "name": "[parameters('serviceBus_Process_VI_Core_CH_Images_Service_Filter_Rule_Name')]",
+              "type": "Rules",
+              "dependsOn": [
+                "[parameters('serviceBus_Process_VI_Core_CH_Images_Service_Subscription_Name')]"
+              ],
+              "properties": {
+                "filterType": "SqlFilter",
+                "sqlFilter": {
+                  "sqlExpression": "[parameters('serviceBus_Process_VI_Core_CH_Images_Service_Filter')]",
+                  "requiresPreprocessing": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "apiVersion": "2017-04-01",
+          "name": "[parameters('serviceBus_Images_Service_Process_Collection_Upload_Estimatic_Images_AU_Subscription_Name')]",
+          "type": "subscriptions",
+          "dependsOn": [
+            "[parameters('serviceBus_Topic_Name')]"
+          ],
+          "resources": [
+            {
+              "apiVersion": "2017-04-01",
+              "name": "[parameters('serviceBus_Images_Service_Process_Collection_Upload_Estimatic_Images_AU_Rule_Name')]",
+              "type": "Rules",
+              "dependsOn": [
+                "[parameters('serviceBus_Images_Service_Process_Collection_Upload_Estimatic_Images_AU_Subscription_Name')]"
+              ],
+              "properties": {
+                "filterType": "SqlFilter",
+                "sqlFilter": {
+                  "sqlExpression": "[parameters('serviceBus_Images_Service_Process_Collection_Upload_Estimatic_Images_AU_Filter')]",
+                  "requiresPreprocessing": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "apiVersion": "2017-04-01",
+          "name": "[parameters('serviceBus_Images_Service_Process_Collection_Upload_Estimatic_Images_CH_Subscription_Name')]",
+          "type": "subscriptions",
+          "dependsOn": [
+            "[parameters('serviceBus_Topic_Name')]"
+          ],
+          "resources": [
+            {
+              "apiVersion": "2017-04-01",
+              "name": "[parameters('serviceBus_Images_Service_Process_Collection_Upload_Estimatic_Images_CH_Rule_Name')]",
+              "type": "Rules",
+              "dependsOn": [
+                "[parameters('serviceBus_Images_Service_Process_Collection_Upload_Estimatic_Images_CH_Subscription_Name')]"
+              ],
+              "properties": {
+                "filterType": "SqlFilter",
+                "sqlFilter": {
+                  "sqlExpression": "[parameters('serviceBus_Images_Service_Process_Collection_Upload_Estimatic_Images_CH_Filter')]",
+                  "requiresPreprocessing": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "apiVersion": "2017-04-01",
+          "name": "[parameters('serviceBus_Images_Service_Process_Collection_Upload_Estimatic_Images_UK_Subscription_Name')]",
+          "type": "subscriptions",
+          "dependsOn": [
+            "[parameters('serviceBus_Topic_Name')]"
+          ],
+          "resources": [
+            {
+              "apiVersion": "2017-04-01",
+              "name": "[parameters('serviceBus_Images_Service_Process_Collection_Upload_Estimatic_Images_UK_Rule_Name')]",
+              "type": "Rules",
+              "dependsOn": [
+                "[parameters('serviceBus_Images_Service_Process_Collection_Upload_Estimatic_Images_UK_Subscription_Name')]"
+              ],
+              "properties": {
+                "filterType": "SqlFilter",
+                "sqlFilter": {
+                  "sqlExpression": "[parameters('serviceBus_Images_Service_Process_Collection_Upload_Estimatic_Images_UK_Filter')]",
+                  "requiresPreprocessing": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "apiVersion": "2017-04-01",
+          "name": "[parameters('serviceBus_Images_Service_Process_Collection_Upload_Estimatic_Images_US_Subscription_Name')]",
+          "type": "subscriptions",
+          "dependsOn": [
+            "[parameters('serviceBus_Topic_Name')]"
+          ],
+          "resources": [
+            {
+              "apiVersion": "2017-04-01",
+              "name": "[parameters('serviceBus_Images_Service_Process_Collection_Upload_Estimatic_Images_US_Rule_Name')]",
+              "type": "Rules",
+              "dependsOn": [
+                "[parameters('serviceBus_Images_Service_Process_Collection_Upload_Estimatic_Images_US_Subscription_Name')]"
+              ],
+              "properties": {
+                "filterType": "SqlFilter",
+                "sqlFilter": {
+                  "sqlExpression": "[parameters('serviceBus_Images_Service_Process_Collection_Upload_Estimatic_Images_US_Filter')]",
+                  "requiresPreprocessing": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "apiVersion": "2017-04-01",
+          "name": "[parameters('serviceBus_Images_Service_Process_Collection_Upload_Estimatic_Images_ZA_Subscription_Name')]",
+          "type": "subscriptions",
+          "dependsOn": [
+            "[parameters('serviceBus_Topic_Name')]"
+          ],
+          "resources": [
+            {
+              "apiVersion": "2017-04-01",
+              "name": "[parameters('serviceBus_Images_Service_Process_Collection_Upload_Estimatic_Images_ZA_Rule_Name')]",
+              "type": "Rules",
+              "dependsOn": [
+                "[parameters('serviceBus_Images_Service_Process_Collection_Upload_Estimatic_Images_ZA_Subscription_Name')]"
+              ],
+              "properties": {
+                "filterType": "SqlFilter",
+                "sqlFilter": {
+                  "sqlExpression": "[parameters('serviceBus_Images_Service_Process_Collection_Upload_Estimatic_Images_ZA_Filter')]",
+                  "requiresPreprocessing": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "apiVersion": "2017-04-01",
+          "name": "[parameters('serviceBus_Adxe_Service_Process_VI_Core_Completed_US_Subscription_Name')]",
+          "type": "subscriptions",
+          "dependsOn": [
+            "[parameters('serviceBus_Topic_Name')]"
+          ],
+          "resources": [
+            {
+              "apiVersion": "2017-04-01",
+              "name": "[parameters('serviceBus_Adxe_Service_Process_VI_Core_Completed_US_Rule_Name')]",
+              "type": "Rules",
+              "dependsOn": [
+                "[parameters('serviceBus_Adxe_Service_Process_VI_Core_Completed_US_Subscription_Name')]"
+              ],
+              "properties": {
+                "filterType": "SqlFilter",
+                "sqlFilter": {
+                  "sqlExpression": "[parameters('serviceBus_Adxe_Service_Process_VI_Core_Completed_US_Filter')]",
+                  "requiresPreprocessing": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "apiVersion": "2017-04-01",
+          "name": "[parameters('serviceBus_Qapter_Estimatic_Images_CH_Subscription_Name')]",
+          "type": "subscriptions",
+          "dependsOn": [
+            "[parameters('serviceBus_Topic_Name')]"
+          ],
+          "resources": [
+            {
+              "apiVersion": "2017-04-01",
+              "name": "[parameters('serviceBus_Qapter_Estimatic_Images_CH_Filter_Rule_Name')]",
+              "type": "Rules",
+              "dependsOn": [
+                "[parameters('serviceBus_Qapter_Estimatic_Images_CH_Subscription_Name')]"
+              ],
+              "properties": {
+                "filterType": "SqlFilter",
+                "sqlFilter": {
+                  "sqlExpression": "[parameters('serviceBus_Qapter_Estimatic_Images_CH_Filter')]",
+                  "requiresPreprocessing": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "apiVersion": "2017-04-01",
+          "name": "[parameters('serviceBus_Adxe_Estimatic_Images_US_Subscription_Name')]",
+          "type": "subscriptions",
+          "dependsOn": [
+            "[parameters('serviceBus_Topic_Name')]"
+          ],
+          "resources": [
+            {
+              "apiVersion": "2017-04-01",
+              "name": "[parameters('serviceBus_Adxe_Estimatic_Images_US_Filter_Rule_Name')]",
+              "type": "Rules",
+              "dependsOn": [
+                "[parameters('serviceBus_Adxe_Estimatic_Images_US_Subscription_Name')]"
+              ],
+              "properties": {
+                "filterType": "SqlFilter",
+                "sqlFilter": {
+                  "sqlExpression": "[parameters('serviceBus_Adxe_Estimatic_Images_US_Filter')]",
+                  "requiresPreprocessing": false
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

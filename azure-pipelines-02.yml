@@ -1,0 +1,104 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+parameters:
+- name: serviceBusLocation
+  type: string
+  default: 'Norway East'
+-name: deploymentFile
+  type: string
+  default: 'azuredeploy_02.json'
+
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+stages:
+- stage: Dev
+  jobs:
+  - job: Dev
+    steps:
+    - task: AzureResourceManagerTemplateDeployment@3
+      inputs:
+        deploymentScope: 'Resource Group'
+        azureResourceManagerConnection: 'decision-support-cicd-nonprod'
+        subscriptionId: '26e2ddde-877d-449e-a869-60e0ac6fee92'
+        action: 'Create Or Update Resource Group'
+        resourceGroupName: 'DecisionSupport'
+        location: '${{parameters.serviceBusLocation}}'
+        templateLocation: 'Linked artifact'
+        csmFile: '$(System.DefaultWorkingDirectory)/Audatex.ArmTemplates/${{parameters.deploymentFile}}'
+        csmParametersFile: '$(System.DefaultWorkingDirectory)/Audatex.ArmTemplates/dev.azuredeploy.parameters.json'
+        deploymentMode: 'Incremental'
+
+- stage: Test
+  jobs:
+  - job: Test
+    steps:
+    - task: AzureResourceManagerTemplateDeployment@3
+      inputs:
+        deploymentScope: 'Resource Group'
+        azureResourceManagerConnection: 'decision-support-cicd-nonprod'
+        subscriptionId: '26e2ddde-877d-449e-a869-60e0ac6fee92'
+        action: 'Create Or Update Resource Group'
+        resourceGroupName: 'DecisionSupport'
+        location: '${{parameters.location}}'
+        templateLocation: 'Linked artifact'
+        csmFile: '$(System.DefaultWorkingDirectory)/Audatex.ArmTemplates/${{parameters.deploymentFile}}'
+        csmParametersFile: '$(System.DefaultWorkingDirectory)/Audatex.ArmTemplates/test.azuredeploy.parameters.json'
+        deploymentMode: 'Incremental'
+
+- stage: Beta
+  jobs:
+  - job: Beta
+    steps:
+    - task: AzureResourceManagerTemplateDeployment@3
+      inputs:
+        deploymentScope: 'Resource Group'
+        azureResourceManagerConnection: 'decision-support-cicd-nonprod'
+        subscriptionId: '26e2ddde-877d-449e-a869-60e0ac6fee92'
+        action: 'Create Or Update Resource Group'
+        resourceGroupName: 'DecisionSupport'
+        location: '${{parameters.serviceBusLocation}}'
+        templateLocation: 'Linked artifact'
+        csmFile: '$(System.DefaultWorkingDirectory)/Audatex.ArmTemplates/${{parameters.deploymentFile}}'
+        csmParametersFile: '$(System.DefaultWorkingDirectory)/Audatex.ArmTemplates/beta.azuredeploy.parameters.json'
+        deploymentMode: 'Incremental'
+
+- stage: Pat
+  jobs:
+  - job: Pat
+    steps:
+    - task: AzureResourceManagerTemplateDeployment@3
+      inputs:
+        deploymentScope: 'Resource Group'
+        azureResourceManagerConnection: 'decision-support-cicd-nonprod'
+        subscriptionId: '26e2ddde-877d-449e-a869-60e0ac6fee92'
+        action: 'Create Or Update Resource Group'
+        resourceGroupName: 'DecisionSupport'
+        location: '${{parameters.serviceBusLocation}}'
+        templateLocation: 'Linked artifact'
+        csmFile: '$(System.DefaultWorkingDirectory)/Audatex.ArmTemplates/${{parameters.deploymentFile}}'
+        csmParametersFile: '$(System.DefaultWorkingDirectory)/Audatex.ArmTemplates/pat.azuredeploy.parameters.json'
+        deploymentMode: 'Incremental'
+
+- stage: Pre
+  jobs:
+  - job: Pre
+    steps:
+    - task: AzureResourceManagerTemplateDeployment@3
+      inputs:
+        deploymentScope: 'Resource Group'
+        azureResourceManagerConnection: 'decision-support-cicd-nonprod'
+        subscriptionId: '26e2ddde-877d-449e-a869-60e0ac6fee92'
+        action: 'Create Or Update Resource Group'
+        resourceGroupName: 'DecisionSupport'
+        location: '${{parameters.serviceBusLocation}}'
+        templateLocation: 'Linked artifact'
+        csmFile: '$(System.DefaultWorkingDirectory)/Audatex.ArmTemplates/${{parameters.deploymentFile}}'
+        csmParametersFile: '$(System.DefaultWorkingDirectory)/Audatex.ArmTemplates/pre.azuredeploy.parameters.json'
+        deploymentMode: 'Incremental'

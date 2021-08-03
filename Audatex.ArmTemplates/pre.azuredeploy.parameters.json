@@ -1,0 +1,306 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "namespaces_Audatex_Global_name": {
+      "value": "axww-decision-support-non-prd"
+    },
+    "namespaces_Audatex_Global_name_dr": {
+      "value": "axww-decision-support-non-prd-dr"
+    },
+    "location": {
+      "value": "UK South"
+    },
+    "location_dr": {
+      "value": "UK West"
+    },
+    "serviceBus_Topic_Name": {
+      "value": "audatex-events"
+    },
+    "serviceBus_Claims_Service_Process_Blueprint_Supp_Subscription_Name": {
+      "value": "claims-service-process-blueprint-supp-PRE"
+    },
+    "serviceBus_Claims_Service_Process_Blueprint_Supp_Filter_Rule_Name": {
+      "value": "blueprint"
+    },
+    "serviceBus_Claims_Service_Process_Blueprint_Supp_Filter": {
+      "value": "name='claim-supplementary' AND eventType='blueprint-created' AND msgEnv='PRE'"
+    },
+    "serviceBus_Gito_Monitoring_Subscription_Name": {
+      "value": "gito-monitoring"
+    },
+    "serviceBus_Gito_Monitoring_Filter_Rule_Name": {
+      "value": "monitor"
+    },
+    "serviceBus_Gito_Monitoring_Filter": {
+      "value": "name='gito-monitoring'"
+    },
+    "serviceBus_catch_all_Subscription_Name": {
+      "value": "catch-all"
+    },
+    "serviceBus_Event_Logger_Subscription_Name": {
+      "value": "event-logger-PRE"
+    },
+    "serviceBus_Audabridge_ReappointRepairer_Subscription_Name": {
+      "value": "Audabridge-ReappointRepairer-PRE"
+    },
+    "serviceBus_Audabridge_ReappointRepairer_Filter_Rule_Name": {
+      "value": "ReappointRepairer"
+    },
+    "serviceBus_Audabridge_ReappointRepairer_Filter": {
+      "value": "name='claim' AND msgEnv='PRE' AND eventType='reallocated' AND entityId='e8d58820-31b4-4194-90c3-db91d4d7a838'"
+    },
+    "serviceBus_Upload_Estimatic_Images_AU_Subscription_Name": {
+      "value": "images-service-upload-estimatic-images-AU-PRE"
+    },
+    "serviceBus_Upload_Estimatic_Images_AU_Filter_Rule_Name": {
+      "value": "Upload"
+    },
+    "serviceBus_Upload_Estimatic_Images_AU_Filter": {
+      "value": "name='image-request' AND msgEnv='PRE' AND eventType='completed' AND dataRegion='au'"
+    },
+    "serviceBus_Upload_Estimatic_Images_CH_Subscription_Name": {
+      "value": "images-service-upload-estimatic-images-CH-PRE"
+    },
+    "serviceBus_Upload_Estimatic_Images_CH_Filter_Rule_Name": {
+      "value": "Upload"
+    },
+    "serviceBus_Upload_Estimatic_Images_CH_Filter": {
+      "value": "name='image-request' AND msgEnv='PRE' AND eventType='completed' AND dataRegion='ch'"
+    },
+    "serviceBus_Upload_Estimatic_Images_US_Subscription_Name": {
+      "value": "images-service-upload-estimatic-images-US-PRE"
+    },
+    "serviceBus_Upload_Estimatic_Images_US_Filter_Rule_Name": {
+      "value": "Upload"
+    },
+    "serviceBus_Upload_Estimatic_Images_US_Filter": {
+      "value": "name='image-request' AND msgEnv='PRE' AND eventType='completed' AND dataRegion='us'"
+    },
+    "serviceBus_Upload_Estimatic_Images_UK_Subscription_Name": {
+      "value": "images-service-upload-estimatic-images-UK-PRE"
+    },
+    "serviceBus_Upload_Estimatic_Images_UK_Filter_Rule_Name": {
+      "value": "Upload"
+    },
+    "serviceBus_Upload_Estimatic_Images_UK_Filter": {
+      "value": "name='image-request' AND msgEnv='PRE' AND eventType='completed' AND dataRegion='uk'"
+    },
+    "serviceBus_Upload_Estimatic_Images_ZA_Subscription_Name": {
+      "value": "images-service-upload-estimatic-images-ZA-PRE"
+    },
+    "serviceBus_Upload_Estimatic_Images_ZA_Filter_Rule_Name": {
+      "value": "Upload"
+    },
+    "serviceBus_Upload_Estimatic_Images_ZA_Filter": {
+      "value": "name='image-request' AND msgEnv='PRE' AND eventType='completed' AND dataRegion='za'"
+    },
+    "serviceBus_Auto_Expire_Image_Requests_AU_Subscription_Name": {
+      "value": "imagerequests-service-auto-expire-AU-PRE"
+    },
+    "serviceBus_Auto_Expire_Image_Requests_AU_Filter_Rule_Name": {
+      "value": "Expire"
+    },
+    "serviceBus_Auto_Expire_Image_Requests_AU_Filter": {
+      "value": "name='image-request' AND msgEnv='PRE' AND eventType='expire' AND dataRegion='au'"
+    },
+    "serviceBus_Auto_Expire_Image_Requests_CH_Subscription_Name": {
+      "value": "imagerequests-service-auto-expire-CH-PRE"
+    },
+    "serviceBus_Auto_Expire_Image_Requests_CH_Filter_Rule_Name": {
+      "value": "Expire"
+    },
+    "serviceBus_Auto_Expire_Image_Requests_CH_Filter": {
+      "value": "name='image-request' AND msgEnv='PRE' AND eventType='expire' AND dataRegion='ch'"
+    },
+    "serviceBus_Auto_Expire_Image_Requests_UK_Subscription_Name": {
+      "value": "imagerequests-service-auto-expire-UK-PRE"
+    },
+    "serviceBus_Auto_Expire_Image_Requests_UK_Filter_Rule_Name": {
+      "value": "Expire"
+    },
+    "serviceBus_Auto_Expire_Image_Requests_UK_Filter": {
+      "value": "name='image-request' AND msgEnv='PRE' AND eventType='expire' AND dataRegion='uk'"
+    },
+    "serviceBus_Auto_Expire_Image_Requests_US_Subscription_Name": {
+      "value": "imagerequests-service-auto-expire-US-PRE"
+    },
+    "serviceBus_Auto_Expire_Image_Requests_US_Filter_Rule_Name": {
+      "value": "Expire"
+    },
+    "serviceBus_Auto_Expire_Image_Requests_US_Filter": {
+      "value": "name='image-request' AND msgEnv='PRE' AND eventType='expire' AND dataRegion='us'"
+    },
+    "serviceBus_Auto_Expire_Image_Requests_ZA_Subscription_Name": {
+      "value": "imagerequests-service-auto-expire-ZA-PRE"
+    },
+    "serviceBus_Auto_Expire_Image_Requests_ZA_Filter_Rule_Name": {
+      "value": "Expire"
+    },
+    "serviceBus_Auto_Expire_Image_Requests_ZA_Filter": {
+      "value": "name='image-request' AND msgEnv='PRE' AND eventType='expire' AND dataRegion='za'"
+    },
+    "serviceBus_Process_Webhooks_Notifications_Service_AU_Subscription_Name": {
+      "value": "notifications-service-process-webhooks-AU-PRE"
+    },
+    "serviceBus_Process_Webhooks_Notifications_Service_AU_Filter_Rule_Name": {
+      "value": "Process"
+    },
+    "serviceBus_Process_Webhooks_Notifications_Service_AU_Filter": {
+      "value": "requiresCallback=true AND msgEnv='PRE' AND dataRegion='au'"
+    },
+    "serviceBus_Process_Webhooks_Notifications_Service_CH_Subscription_Name": {
+      "value": "notifications-service-process-webhooks-CH-PRE"
+    },
+    "serviceBus_Process_Webhooks_Notifications_Service_CH_Filter_Rule_Name": {
+      "value": "Process"
+    },
+    "serviceBus_Process_Webhooks_Notifications_Service_CH_Filter": {
+      "value": "requiresCallback=true AND msgEnv='PRE' AND dataRegion='ch'"
+    },
+    "serviceBus_Process_Webhooks_Notifications_Service_UK_Subscription_Name": {
+      "value": "notifications-service-process-webhooks-UK-PRE"
+    },
+    "serviceBus_Process_Webhooks_Notifications_Service_UK_Filter_Rule_Name": {
+      "value": "Process"
+    },
+    "serviceBus_Process_Webhooks_Notifications_Service_UK_Filter": {
+      "value": "requiresCallback=true AND msgEnv='PRE' AND dataRegion='uk'"
+    },
+    "serviceBus_Process_Webhooks_Notifications_Service_US_Subscription_Name": {
+      "value": "notifications-service-process-webhooks-US-PRE"
+    },
+    "serviceBus_Process_Webhooks_Notifications_Service_US_Filter_Rule_Name": {
+      "value": "Process"
+    },
+    "serviceBus_Process_Webhooks_Notifications_Service_US_Filter": {
+      "value": "requiresCallback=true AND msgEnv='PRE' AND dataRegion='us'"
+    },
+    "serviceBus_Process_Webhooks_Notifications_Service_ZA_Subscription_Name": {
+      "value": "notifications-service-process-webhooks-ZA-PRE"
+    },
+    "serviceBus_Process_Webhooks_Notifications_Service_ZA_Filter_Rule_Name": {
+      "value": "Process"
+    },
+    "serviceBus_Process_Webhooks_Notifications_Service_ZA_Filter": {
+      "value": "requiresCallback=true AND msgEnv='PRE' AND dataRegion='za'"
+    },
+    "serviceBus_Process_VI_Core_UK_Images_Service_Subscription_Name": {
+      "value": "images-service-process-collection-vi-core-UK-PRE"
+    },
+    "serviceBus_Process_VI_Core_UK_Images_Service_Filter_Rule_Name": {
+      "value": "ProcessVI"
+    },
+    "serviceBus_Process_VI_Core_UK_Images_Service_Filter": {
+      "value": "name='vi-no-calculation' AND eventType='process' AND msgEnv='PRE' AND (countryOrigin='uk' OR dataRegion='uk')"
+    },
+    "serviceBus_Process_VI_Core_US_Images_Service_Subscription_Name": {
+      "value": "images-service-process-collection-vi-core-US-PRE"
+    },
+    "serviceBus_Process_VI_Core_US_Images_Service_Filter_Rule_Name": {
+      "value": "ProcessVI"
+    },
+    "serviceBus_Process_VI_Core_US_Images_Service_Filter": {
+      "value": "name='vi-no-calculation' AND eventType='process' AND msgEnv='PRE' AND (countryOrigin='us' OR dataRegion='us')"
+    },
+    "serviceBus_Process_VI_Core_AU_Images_Service_Subscription_Name": {
+      "value": "images-service-process-collection-vi-core-AU-PRE"
+    },
+    "serviceBus_Process_VI_Core_AU_Images_Service_Filter_Rule_Name": {
+      "value": "ProcessVI"
+    },
+    "serviceBus_Process_VI_Core_AU_Images_Service_Filter": {
+      "value": "name='vi-no-calculation' AND eventType='process' AND msgEnv='PRE' AND (countryOrigin='au' OR dataRegion='au')"
+    },
+    "serviceBus_Process_VI_Core_ZA_Images_Service_Subscription_Name": {
+      "value": "images-service-process-collection-vi-core-ZA-PRE"
+    },
+    "serviceBus_Process_VI_Core_ZA_Images_Service_Filter_Rule_Name": {
+      "value": "ProcessVI"
+    },
+    "serviceBus_Process_VI_Core_ZA_Images_Service_Filter": {
+      "value": "name='vi-no-calculation' AND eventType='process' AND msgEnv='PRE' AND (countryOrigin='za' OR dataRegion='za')"
+    },
+    "serviceBus_Process_VI_Core_CH_Images_Service_Subscription_Name": {
+      "value": "images-service-process-collection-vi-core-CH-PRE"
+    },
+    "serviceBus_Process_VI_Core_CH_Images_Service_Filter_Rule_Name": {
+      "value": "ProcessVI"
+    },
+    "serviceBus_Process_VI_Core_CH_Images_Service_Filter": {
+      "value": "name='vi-no-calculation' AND eventType='process' AND msgEnv='PRE' AND (countryOrigin='ch' OR dataRegion='ch')"
+    },
+    "serviceBus_Images_Service_Process_Collection_Upload_Estimatic_Images_AU_Subscription_Name": {
+      "value": "images-service-pc-upload-estimatic-images-AU-PRE"
+    },
+    "serviceBus_Images_Service_Process_Collection_Upload_Estimatic_Images_AU_Rule_Name": {
+      "value": "Process"
+    },
+    "serviceBus_Images_Service_Process_Collection_Upload_Estimatic_Images_AU_Filter": {
+      "value": "name='estimatic-attachment' AND eventType='process' AND msgEnv='PRE' AND (countryOrigin='au' OR dataRegion='au')"
+    },
+    "serviceBus_Images_Service_Process_Collection_Upload_Estimatic_Images_CH_Subscription_Name": {
+      "value": "images-service-pc-upload-estimatic-images-CH-PRE"
+    },
+    "serviceBus_Images_Service_Process_Collection_Upload_Estimatic_Images_CH_Rule_Name": {
+      "value": "Process"
+    },
+    "serviceBus_Images_Service_Process_Collection_Upload_Estimatic_Images_CH_Filter": {
+      "value": "name='estimatic-attachment' AND eventType='process' AND msgEnv='PRE' AND (countryOrigin='ch' OR dataRegion='ch')"
+    },
+    "serviceBus_Images_Service_Process_Collection_Upload_Estimatic_Images_UK_Subscription_Name": {
+      "value": "images-service-pc-upload-estimatic-images-UK-PRE"
+    },
+    "serviceBus_Images_Service_Process_Collection_Upload_Estimatic_Images_UK_Rule_Name": {
+      "value": "Process"
+    },
+    "serviceBus_Images_Service_Process_Collection_Upload_Estimatic_Images_UK_Filter": {
+      "value": "name='estimatic-attachment' AND eventType='process' AND msgEnv='PRE' AND (countryOrigin='uk' OR countryOrigin='ie' OR dataRegion='uk')"
+    },
+    "serviceBus_Images_Service_Process_Collection_Upload_Estimatic_Images_US_Subscription_Name": {
+      "value": "images-service-pc-upload-estimatic-images-US-PRE"
+    },
+    "serviceBus_Images_Service_Process_Collection_Upload_Estimatic_Images_US_Rule_Name": {
+      "value": "Process"
+    },
+    "serviceBus_Images_Service_Process_Collection_Upload_Estimatic_Images_US_Filter": {
+      "value": "name='estimatic-attachment' AND eventType='process' AND msgEnv='PRE' AND (countryOrigin='us' OR dataRegion='us')"
+    },
+    "serviceBus_Images_Service_Process_Collection_Upload_Estimatic_Images_ZA_Subscription_Name": {
+      "value": "images-service-pc-upload-estimatic-images-ZA-PRE"
+    },
+    "serviceBus_Images_Service_Process_Collection_Upload_Estimatic_Images_ZA_Rule_Name": {
+      "value": "Process"
+    },
+    "serviceBus_Images_Service_Process_Collection_Upload_Estimatic_Images_ZA_Filter": {
+      "value": "name='estimatic-attachment' AND eventType='process' AND msgEnv='PRE' AND (countryOrigin='za' OR dataRegion='za')"
+    },
+    "serviceBus_Adxe_Service_Process_VI_Core_Completed_US_Subscription_Name": {
+      "value": "adxe-service-process-vi-no-calc-US-PRE"
+    },
+    "serviceBus_Adxe_Service_Process_VI_Core_Completed_US_Rule_Name": {
+      "value": "Process"
+    },
+    "serviceBus_Adxe_Service_Process_VI_Core_Completed_US_Filter": {
+      "value": "name='vi-no-calculation' AND eventType='completed' AND msgEnv='PRE' AND countryOrigin='us' AND dataRegion='us'"
+    },
+    "serviceBus_Qapter_Estimatic_Images_CH_Subscription_Name": {
+      "value": "images-service-qapter-estimatic-images-CH-PRE"
+    },
+    "serviceBus_Qapter_Estimatic_Images_CH_Filter_Rule_Name": {
+      "value": "Process"
+    },
+    "serviceBus_Qapter_Estimatic_Images_CH_Filter": {
+      "value": "msgEnv='PRE' AND dataRegion='ch' AND ((name='image-request' AND eventType='completed' AND entityId='c715daef-6b50-4878-8276-290e7f96a651') OR (name='estimatic-attachment' AND eventType='process' AND destinationSystem='qapter'))"
+    },
+    "serviceBus_Adxe_Estimatic_Images_US_Subscription_Name": {
+      "value": "images-service-adxe-estimatic-images-US-PRE"
+    },
+    "serviceBus_Adxe_Estimatic_Images_US_Filter_Rule_Name": {
+      "value": "Process"
+    },
+    "serviceBus_Adxe_Estimatic_Images_US_Filter": {
+      "value": "name='estimatic-attachment' AND eventType='process' AND msgEnv='PRE' AND dataRegion='us' AND destinationSystem='adxe'"
+    }
+  }
+}
