@@ -20,7 +20,7 @@ stages:
         azureResourceManagerConnection: 'decision-support-cicd-prod'
         subscriptionId: '8a16b850-169e-41ed-abba-7619855ac2a4'
         action: 'Create Or Update Resource Group'
-        resourceGroupName: 'DecisionSupport'
+        resourceGroupName: '${{parameters.resourceGroupName}}'
         location: 'UK South'
         templateLocation: 'Linked artifact'
         csmFile: '$(System.DefaultWorkingDirectory)/Audatex.ArmTemplates/azuredeploy.json'
