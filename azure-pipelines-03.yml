@@ -3,6 +3,13 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
+variables:
+  serviceBusLocation: 'Norway East'
+  deploymentFile: 'azuredeploy_02.json'
+  resourceGroupName: 'SPL_TST'
+  subscriptionId: 'f8340282-4c2d-41e5-bc96-0a433f327610'
+  resourceManagerConnection: 'spl-decision-support-cicd-prod'
+
 trigger:
 - master
 
@@ -17,29 +24,12 @@ stages:
     - task: AzureResourceManagerTemplateDeployment@3
       inputs:
         deploymentScope: 'Resource Group'
-        azureResourceManagerConnection: 'decision-support-cicd-prod'
-        subscriptionId: '8a16b850-169e-41ed-abba-7619855ac2a4'
+        azureResourceManagerConnection: '${{variables.resourceManagerConnection}}'
+        subscriptionId: '${{variables.subscriptionId}}'
         action: 'Create Or Update Resource Group'
         resourceGroupName: '${{parameters.resourceGroupName}}'
-        location: 'UK South'
+        location: '${{parameters.serviceBusLocation}}'
         templateLocation: 'Linked artifact'
-        csmFile: '$(System.DefaultWorkingDirectory)/Audatex.ArmTemplates/azuredeploy.json'
-        csmParametersFile: '$(System.DefaultWorkingDirectory)/Audatex.ArmTemplates/prod.azuredeploy.parameters.json'
-        deploymentMode: 'Incremental'
-
-- stage: Prod_DR
-  jobs:
-  - job: Prod_DR
-    steps:
-    - task: AzureResourceManagerTemplateDeployment@3
-      inputs:
-        deploymentScope: 'Resource Group'
-        azureResourceManagerConnection: 'decision-support-cicd-prod'
-        subscriptionId: '8a16b850-169e-41ed-abba-7619855ac2a4'
-        action: 'Create Or Update Resource Group'
-        resourceGroupName: 'DecisionSupport-DR'
-        location: 'UK West'
-        templateLocation: 'Linked artifact'
-        csmFile: '$(System.DefaultWorkingDirectory)/Audatex.ArmTemplates/azuredeploy_dr.json'
+        csmFile: '$(System.DefaultWorkingDirectory)/Audatex.ArmTemplates/${{parameters.deploymentFile}}'
         csmParametersFile: '$(System.DefaultWorkingDirectory)/Audatex.ArmTemplates/prod.azuredeploy.parameters.json'
         deploymentMode: 'Incremental'
